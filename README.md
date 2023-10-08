@@ -1,6 +1,8 @@
 # MasterTicket
 a qrocde ticket system with web gui
 
+![Screenshot](/READMEFILE/header_image.png)
+
 ## How to use
 1. create a firebase project
 2. get service account key `serviceAccountKey.json`
