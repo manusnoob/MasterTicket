@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}MasterTicket{% endblock %}
+
+{% block body %}
+
+<link rel='stylesheet' href="{{url_for('static', filename = 'home.css')}}">
+
+<img src="{{url_for('static', filename = 'header_image.png')}}" class="heading_image" />
+
+<main>
+  <section class="left">
+    <a href="/upload" class="event">
+      <button class="btn btn-info event">+ Event</button>
+    </a>
+  </section>
+    
+  <section class="right">
+    <div class="scrollable-table">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Created Time</th>
+            <th>Mail Merge</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in data %}
+            <tr>
+              <td>{{ item.name }}</td>
+              <td>{{ item.time }}</td>
+              <td><a href="/download?event={{ item.name }}" class="btn btn-success">Download</a></td>
+              <td><a href="/delete_confirm?event={{ item.name }}" class="btn btn-danger" width="auto">Delete</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+
+
+
+
+{% endblock %}

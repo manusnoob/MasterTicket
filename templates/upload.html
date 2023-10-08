@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}MasterTicket{% endblock %}
+
+{% block body %}
+
+<link rel='stylesheet' href="{{url_for('static', filename = 'upload.css')}}">
+
+<main>
+
+  <h1 class="title">Add Event</h1>
+
+  <section class="top">
+    <form action="/upload" method="post" enctype="multipart/form-data" class="flex-column-center">
+      <div class="input">
+        <div class="input-group">
+          <span class="input-group-text">Event Name</span>
+          <input type="text" name="TextInput" class="form-control">
+        </div>
+    
+        <input type="file" name="FileInput" id="FileInput" accept=".csv">
+      </div>
+    
+      <div class="submit">
+        <div class="form-text">{{valid}}</div>
+        <button type="submit" class="btn btn-primary">Upload</button>
+      </div>
+    </form>
+  </section>
+
+  {% if table %}
+  <section class="bottom">
+    <div class="scrollable-table">
+      <table class="table table-striped">
+        <tbody>
+            {% for row in table %}
+            <tr {% if row[0] in duplicated_item %}  class="table-warning" {% endif %} >
+                {% for item in row %}
+                <td>{{ item }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+  {% endif %}
+
+</main>
+
+{% endblock %}
